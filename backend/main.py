@@ -8,6 +8,7 @@ from database import (
     remove_todo
 )
 from model import Todo
+import uvicorn
 
 app = FastAPI()
 
@@ -63,3 +64,6 @@ async def delete_todo(title):
     if response > 0:
         return "Successfully deleted TODO item!"
     raise HTTPException(404, f"There is no TODO item with title: {title}")
+
+if __name__ == '__main__':
+    uvicorn.run(app, port=8000, host="0.0.0.0")
